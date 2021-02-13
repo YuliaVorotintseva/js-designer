@@ -1,11 +1,20 @@
-import {row, col} from './utils'
+import {row, col, css} from './utils'
 
-const title = block => row(col(`<h1>${block.value}</h1>`))
+const title = block => {
+    const {tag = 'h1', styles} = block.options
+    return row(col(`<${tag}>${block.value}</${tag}>`), css(styles))
+}
 
-const text = block => row(col(`<p>${block.value}</p>`))
+const text = block => {
+    const {tag = 'p', styles} = block.options
+    return row(col(`<${tag}>${block.value}</${tag}>`), css(styles))
+}
 
-const columns = block => row([...block.value].map(col).join(''))
+const columns = block => row([...block.value].map(col).join(''), css(block.options.styles))
 
-const image = block => row(`<img src="${block.value}" />`)
+const image = block => {
+    const {alt = 'image', styles, imgStyles} = block.options
+    return row(`<img src="${block.value}" style="${css(imgStyles)}" alt="${alt}" />`, css(styles))
+}
 
 export const templates = {title, text, columns, image}
