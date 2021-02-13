@@ -22,3 +22,7 @@
     overflow-y: auto;
     background: linear-gradient(45deg, #EECFBA, #C5DDE8);
 }
+
+.form-add {
+    padding: 10px 0;
+}
